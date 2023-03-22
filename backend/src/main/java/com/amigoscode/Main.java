@@ -30,7 +30,6 @@ public class Main {
                     firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com",
                     random.nextInt(16, 99)
             );
-
             customerRepository.save(customer);
         };
     }
