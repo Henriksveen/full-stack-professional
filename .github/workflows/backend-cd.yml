@@ -67,10 +67,10 @@ jobs:
 #          deployment_package: backend/Dockerrun.aws.json
       - name: Commit and push Dockerrun.aws.json
         run: |
-          echo @github.com/$GITHUB_REPOSITORY
+          echo @github.com/${{ github.repository }}
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
           git commit -m "Update Dockerrun.aws.json image with new tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
           git push
