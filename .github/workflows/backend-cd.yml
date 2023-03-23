@@ -49,11 +49,11 @@ jobs:
         run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: Update Dockerrun.aws.json api image tag with build number
         run: |
-          echo "Dockerrun.aws.yml before updating tag"
-          cat Dockerrun.aws.yml
-          sed -i -E 's_(simenhenriksveen/full-stack-professional-api:)([^"]*)_\1'${{ steps.build-number.outputs.BUILD_NUMBER }}'_' Dockerrun.aws.yml
-          echo "Dockerrun.aws.yml after updating tag"
-          cat Dockerrun.aws.yml
+          echo "Dockerrun.aws.json before updating tag"
+          cat Dockerrun.aws.json
+          sed -i -E 's_(simenhenriksveen/full-stack-professional-api:)([^"]*)_\1'${{ steps.build-number.outputs.BUILD_NUMBER }}'_' Dockerrun.aws.json
+          echo "Dockerrun.aws.json after updating tag"
+          cat Dockerrun.aws.json
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
         with:
