@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "full-stack-professional-api",
-      "image": "simenhenriksveen/full-stack-professional-api:26.03.2023.19.47.48",
+      "image": "simenhenriksveen/full-stack-professional-api:28.03.2023.21.31.35",
       "essential": true,
       "memory": 512,
       "portMappings": [
