@@ -13,8 +13,8 @@ public class CustomerListDataAccessService implements CustomerDAO {
 
     static {
         customers = new ArrayList<>(List.of(
-                new Customer(1, "alex", "alex@gmail.com", 21),
-                new Customer(2, "jamila", "jamila@gmail.com", 19)
+                new Customer(1, "alex", "alex@gmail.com", 21, Gender.MALE),
+                new Customer(2, "jamila", "jamila@gmail.com", 19, Gender.FEMALE)
         ));
     }
 

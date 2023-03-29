@@ -6,6 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -44,7 +47,7 @@ class CustomerJpaDataAccessServiceTest {
     @Test
     void insertCustomer() {
         // Given
-        Customer customer = new Customer(1, "foo", "foo@gmail.com", 2);
+        Customer customer = new Customer(1, "foo", "foo@gmail.com", 2, Gender.MALE);
 
         // When
         underTest.insertCustomer(customer);
@@ -92,7 +95,7 @@ class CustomerJpaDataAccessServiceTest {
     @Test
     void updateCustomer() {
         // Given
-        Customer update = new Customer(1, "foo", "foo@gmail.com", 2);
+        Customer update = new Customer(1, "foo", "foo@gmail.com", 2, Gender.MALE);
 
         // When
         underTest.updateCustomer(update);

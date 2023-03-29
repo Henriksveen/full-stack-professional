@@ -42,7 +42,7 @@ class CustomerServiceTest {
     void catGetCustomer() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
         // When
@@ -70,7 +70,7 @@ class CustomerServiceTest {
         // Given
         String email = "foo@gmail.com";
         when(customerDAO.existsPersonWithEmail(email)).thenReturn(false);
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest("foo", email, 20);
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest("foo", email, 20, Gender.MALE);
 
         // When
         underTest.addCustomer(request);
@@ -93,7 +93,7 @@ class CustomerServiceTest {
         // Given
         String email = "foo@gmail.com";
         when(customerDAO.existsPersonWithEmail(email)).thenReturn(true);
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest("foo", email, 20);
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest("foo", email, 20, Gender.MALE);
 
         // When
         assertThatThrownBy(() -> underTest.addCustomer(request))
@@ -137,7 +137,7 @@ class CustomerServiceTest {
     void canUpdateAllCustomersProperties() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         CustomerUpdateRequest request = new CustomerUpdateRequest("update", "update@gmail.com", 30);
         when(customerDAO.existsPersonWithEmail(request.email())).thenReturn(false);
@@ -160,7 +160,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerName() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         CustomerUpdateRequest request = new CustomerUpdateRequest("update", null, null);
 
@@ -182,7 +182,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerEmail() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         String newEmail = "update@gmail.com";
         CustomerUpdateRequest request = new CustomerUpdateRequest(null, newEmail, null);
@@ -206,7 +206,7 @@ class CustomerServiceTest {
     void canUpdateOnlyCustomerAge() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         CustomerUpdateRequest request = new CustomerUpdateRequest(null, null, 30);
 
@@ -229,7 +229,7 @@ class CustomerServiceTest {
     void willThrowWhenUpdateCustomerHasNoChanges() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         CustomerUpdateRequest request = new CustomerUpdateRequest(
                 customer.getName(), customer.getEmail(), customer.getAge());
@@ -247,7 +247,7 @@ class CustomerServiceTest {
     void willThrowWhenUpdateCustomerEmailExists() {
         // Given
         int id = 1;
-        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20);
+        Customer customer = new Customer(id, "foo", "foo@gmail.com", 20, Gender.MALE);
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
         String email = "exists@gmail.com";
         when(customerDAO.existsPersonWithEmail(email)).thenReturn(true);
