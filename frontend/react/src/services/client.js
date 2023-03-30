@@ -26,3 +26,13 @@ export const deleteCustomer = async (id) => {
         throw err;
     }
 }
+
+export const updateCustomer = async (id, update) => {
+    try {
+        return await axios.put(`${import.meta.env.VITE_API_BASEURL}/api/v1/customers/${id}`,
+            update
+        );
+    } catch (err) {
+        throw err;
+    }
+}
